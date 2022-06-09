@@ -1,4 +1,4 @@
-import { Component, VERSION } from '@angular/core';
+import { Component, VERSION, OnInit } from '@angular/core';
 import { AppareilComponent } from './appareil/appareil.component';
 import { AppareilService } from './services/appareil.service';
 
@@ -7,8 +7,10 @@ import { AppareilService } from './services/appareil.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   maj = new Date();
+  appareils: any[];
+
   prom = new Promise((resolve, rejected) => {
     const date = new Date();
     setTimeout(() => {
@@ -24,18 +26,15 @@ export class AppComponent {
     }, 4000);
   }
 
-  appareils = [
-    {
-      nom: 'tele',
-      status: 'allumé',
-    },
-    {
-      nom: 'ordi',
-      status: 'éteint',
-    },
-    {
-      nom: 'four',
-      status: 'allumé',
-    },
-  ];
+  ngOnInit() {
+    this.appareils = this.appareilService.appareils;
+  }
+
+  Al() {
+    this.appareilService.AllumTout();
+  }
+
+  Et() {
+    this.appareilService.EteintTout();
+  }
 }

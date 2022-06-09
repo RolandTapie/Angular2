@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { AppareilService } from '../services/appareil.service';
 
 @Component({
   selector: 'app-appareil',
@@ -6,11 +7,15 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./appareil.component.css'],
 })
 export class AppareilComponent implements OnInit {
-  constructor() {}
+  constructor(private appareilService: AppareilService) {}
 
   @Input()
   name: string = 'televiseur';
+  @Input()
   status: string = 'éteint';
+  @Input()
+  indexOfAppareil: number;
+
   btn: boolean = false;
   ngOnInit() {}
 
@@ -31,5 +36,11 @@ export class AppareilComponent implements OnInit {
     } else {
       this.status = 'éteint';
     }
+  }
+  alAppareil() {
+    this.appareilService.AlUnique(this.indexOfAppareil);
+  }
+  etAppareil() {
+    this.appareilService.EtUnique(this.indexOfAppareil);
   }
 }

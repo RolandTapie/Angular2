@@ -11,10 +11,16 @@
     <div class="col-xs-12">
       <p>Date de mise à jour : {{ maj | date }}</p>
       <h2>Les appareils</h2>
+      <button class="btn btn-success" (click)="Al()">Allumer tout</button>
+
+      <button class="btn btn-danger" (click)="Et()">Eteindre tout</button>
+
       <ul class="list-group">
         <app-appareil
-          *ngFor="let app of appareils"
+          *ngFor="let app of appareils; let i = index"
           [name]="app.nom"
+          [status]="app.status"
+          [indexOfAppareil]="i"
         ></app-appareil>
       </ul>
       <button class="btn btn-danger" [disabled]="!tps">Etat général</button>
