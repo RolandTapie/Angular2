@@ -9,16 +9,15 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
+      <p>Date de mise à jour : {{ maj | date }}</p>
       <h2>Les appareils</h2>
       <ul class="list-group">
-        <app-appareil></app-appareil>
-        <app-appareil></app-appareil>
-        <app-appareil></app-appareil>
-        <app-appareil></app-appareil>
-        <app-appareil></app-appareil>
+        <app-appareil
+          *ngFor="let app of appareils"
+          [name]="app.nom"
+        ></app-appareil>
       </ul>
-
-      <button class="btn btn-danger">Etat général</button>
+      <button class="btn btn-danger" [disabled]="!tps">Etat général</button>
     </div>
   </div>
 </div>

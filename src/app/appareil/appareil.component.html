@@ -1,2 +1,20 @@
-<p>appareil : {{ name }} > status : {{ getStatus() }}</p>
-<button class="btn btn-success" [disabled]="btn" (click)="changeStatus()">bouton</button>
+<li
+  [ngClass]="{
+    'list-group-item': true,
+    'list-group-item-success': status === 'allumé',
+    'list-group-item-danger': status === 'éteint'
+  }"
+>
+  <div
+    style="width:20px;height:20px;background-color:red;"
+    *ngIf="status === 'éteint'"
+  ></div>
+  <h4 [ngStyle]="{ color: getColor() }">
+    appareil : {{ name }} ----- status ------ {{ getStatus() }}
+  </h4>
+  <button class="btn btn-success" [disabled]="btn" (click)="changeStatus()">
+    bouton
+  </button>
+  <input type="text" class="form-control" [(ngModel)]="name" />
+  <!--two way binding-->
+</li>
