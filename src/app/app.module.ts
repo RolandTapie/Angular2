@@ -6,9 +6,11 @@ import { AppComponent } from './app.component';
 import { HelloComponent } from './hello.component';
 import { Composant1Component } from './composant1/composant1.component';
 import { AppareilComponent } from './appareil/appareil.component';
+import { AppareilService } from './services/appareil.service';
 
 @NgModule({
   imports: [BrowserModule, FormsModule],
+  providers: [AppareilService],
   declarations: [
     AppComponent,
     HelloComponent,
