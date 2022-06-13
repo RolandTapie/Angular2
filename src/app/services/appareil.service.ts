@@ -1,4 +1,16 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { app } from '../appareil/appareil';
+import { Observable } from 'rxjs';
+@Injectable({
+  providedIn: 'root',
+})
 export class AppareilService {
+  https: HttpClient;
+  constructor(http: HttpClient) {
+    this.https = http;
+  }
+  URL: string = '../bd/appareil.json';
   public appareils = [
     {
       nom: 'tele',
@@ -32,5 +44,10 @@ export class AppareilService {
 
   EtUnique(index: number) {
     this.appareils[index].status = 'éteint';
+  }
+
+  getappareil(): Observable<app[]> {
+    console.log('lecture Ok');
+    return this.https.get<app[]>(this.URL);
   }
 }

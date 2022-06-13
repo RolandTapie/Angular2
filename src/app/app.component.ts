@@ -1,6 +1,7 @@
 import { Component, VERSION, OnInit } from '@angular/core';
 import { AppareilComponent } from './appareil/appareil.component';
 import { AppareilService } from './services/appareil.service';
+import { app } from './appareil/appareil';
 
 @Component({
   selector: 'my-app',
@@ -10,7 +11,7 @@ import { AppareilService } from './services/appareil.service';
 export class AppComponent implements OnInit {
   maj = new Date();
   appareils: any[];
-
+  listapp: app[];
   prom = new Promise((resolve, rejected) => {
     const date = new Date();
     setTimeout(() => {
@@ -28,6 +29,11 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.appareils = this.appareilService.appareils;
+    const Obs = this.appareilService
+      .getappareil()
+      .subscribe((a) => (this.listapp = a));
+
+      console.log(this.listapp);
   }
 
   Al() {
